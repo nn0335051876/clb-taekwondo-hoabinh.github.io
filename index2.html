@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <style>
+    <meta charset="UTF-8" />
+    <title>CLB Taekwondo Hòa Bình</title>
+    <styl>
+        * {
+          box-sizing: border-box;
+        }
+
+        /* ===== BODY ===== */
+        body {
+          margin: 0;
+          font-family: Time New Roman, sans-serif;
+          background-color: #3a3a3a;
+          color: white;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+          background: linear-gradient(to bottom, #111, #444);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 20px;
+        }
+
+        /* ===== LOGO ===== */
+        .logo {
+          display: flex;
+          align-items: center;
+        }
+
+        .logo img {
+          width: 55px;
+          height: 55px;
+          border-radius: 50%; /* LOGO TRÒN */
+          object-fit: cover;
+          margin-right: 10px;
+          background: white; /* phòng khi logo nền trong */
+        }
+
+        .logo span {
+          color: #ffd700;
+          font-weight: bold;
+          font-size: 18px;
+        }
+
+        /* ===== SEARCH + HAMBURGER ===== */
+        .header-right {
+          display: flex;
+          align-items: center;
+          gap: 10px; 
+        }
+
+        .search-box {
+          padding: 5px 15px;
+          border-radius: 25px;
+          border: none;
+          outline: none;
+          height: 35px; 
+          font-size: 14px;
+          width: 180px;
+        }
+
+        .menu-btn {
+          font-size: 28px;
+          cursor: pointer;
+          color: #ffd700;
+          user-select: none;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.6);
+          display: none;
+          z-index: 998;
+        }
+
+        .overlay.active {
+          display: block;
+        }
+
+        /* ===== SIDE MENU ===== */
+        .side-menu {
+          position: fixed;
+          top: 0;
+          right: -260px;
+          width: 260px;
+          height: 100%;
+          background-color: #222;
+          padding: 0px;
+          transition: right 0.3s ease;
+          z-index: 999;
+        }
+
+        .side-menu.active {
+          right: 0;
+        }
+
+        .side-menu a,
+        .menu-title {
+          display: block;
+          padding: 12px 0;
+          color: white;
+          text-decoration: none;
+          font-size: 17px;
+          border-bottom: 1px solid #444;
+          cursor: pointer;
+        }
+
+        .side-menu a:hover,
+        .menu-title:hover {
+          color: #ffd700;
+        }
+
+        /* ===== SUBMENU (KHÓA HỌC) ===== */
+        .submenu {
+          display: none;
+          padding-left: 15px;
+        }
+
+        .submenu.open {
+          display: block;
+        }
+
+        .submenu a {
+          font-size: 16px;
+        }
+
+        /* ===== MAIN ===== */
+        main {
+          padding: 60px 20px;
+          text-align: left;
+        }
+
+       h2 {
+    margin-top: -25px;
+    color: #ffffff;
+    font-family: "Times New Roman", serif;
+    font-size: 40px;
+    line-height: 20px;
+    text-align:center;
+}
+
+h1 {
+    color: #ffd700;
+    font-family: Helvetica, sans-serif;
+    font-size: 50px;
+    text-align: center;
+        }
+        h5{
+          text-align:center;
+          font-size:20px;
+        }
+        article h3{
+          margin-top:-20px;
+          font-weight:bold;
+          text-transform: uppercase;
+          font-size :30px;
+          text-align: center;
+          padding: 15px;
+          color:#ffd700
+        }  
+        article h3{
+            margin-top:20px;
+        }
+        article h4{
+             font-weight:bold;
+             text-transform: uppercase;
+            font-size :25px;
+            color:#c9b347
+        }
+        .khung body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .khung .frame {
+          margin-left:auto;
+          margin-right:auto;
+            border: 4px solid #FFD700;
+            border-radius: 10px;
+            max-width: 400px;
+            background: #000;
+        }
+        .khung .text {
+            color: #FFD700;
+            text-align: center;
+            padding: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #FFD700;
+        }
+        .khung .image {
+            padding: 10px;
+            text-align: center;
+        }
+        .khung img {
+            max-width: 100%;
+            height: auto;
+        }
+         .hangngang {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        .khungdoc {
+            width: 33%;
+            border: 0px solid WHITE;
+            border-radius: 10px;
+            background: linear-gradient(to bottom, #000000, #808080);
+        }
+        .hangngang1 {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        .hangngang2 {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+         .grid__column-2-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20%;
+  float: left; /* Hoặc sử dụng flexbox */
+  box-sizing: border-box; /* Để padding không ảnh hưởng đến width */
+}
+
+/* Cách 1: Sử dụng float (truyền thống) */
+.grid__row {
+  overflow: hidden; /* Clear float */
+}
+
+/* Hoặc Cách 2: Sử dụng flexbox (hiện đại) */
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.grid__column-2-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20%;
+  box-sizing: border-box;
+}
+       /* Footer styles */
+footer {
+  background-color: #000000;
+  border-top: 4px solid var(--primary-color);
+  padding-top: 15px;
+}
+
+.footer__heading {
+  font-size: 14px; /* Tăng kích thước cho dễ đọc */
+  text-transform: uppercase;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.footer-list {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.footer-item {
+  margin-bottom: 6px;
+}
+
+.footer-item_link {
+  text-decoration: none;
+  font-size: 13px; /* Tăng kích thước cho dễ đọc */
+  color: var(--text-color);
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.footer-item_link:hover {
+  color: var(--primary-color);
+}
+
+.footer-item_icon {
+  font-size: 12px; /* Tăng kích thước cho dễ đọc */
+  margin-right: 8px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Biến CSS */
+:root {
+  --text-color: #d49b00;
+  --primary-color: #ff9900;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+  font-size: 12px;
+  clear: both; /* Nếu dùng float */
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .grid__column-2-4 {
+    width: 50%; /* Trên mobile hiển thị 2 cột */
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid__column-2-4 {
+    width: 100%; /* Trên mobile nhỏ hiển thị 1 cột */
+  }
+}
+.container1{
+  width: 80%; /* Hoặc một giá trị cố định */
+  margin-left: 425px;
+  margin-right: auto;
+  margin-top:10px;
+}
+.slider {
+            width: 600px;
+            position: relative;
+        }
+        
+        .slides-container {
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .slides {
+            display: flex;
+            transition: 0.3s;
+        }
+        
+        .slide {
+            min-width: 100%;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .nav:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        
+        .prev {
+            left: -20px;
+        }
+        
+        .next {
+            right: -20px;
+        }
+        
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .dot.active {
+            background: #333;
+        }
+         .social-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .facebook-button {
+            background-color: #1877F2;
+            color: white;
+        }
+        .facebook-button:hover {
+            background-color: #166FE5;
+            transform: translateY(-2px);
+        }
+        .tiktok-button {
+            background-color: #000000;
+            color: white;
+        }
+        .tiktok-button:hover {
+            background-color: #222222;
+            transform: translateY(-2px);
+        }
+        .social-icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        .tiktok-button .social-icon {
+            color: #FF0050;
+            text-shadow: 2px 0px 0px #00F2EA;
+        }
+    </style>
+</head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="img/logo.jpg" alt="Logo CLB" />
+        <span>TAEKWONDO & BOXING HÒA BÌNH</span>
+      </div>
+
+      <div class="header-right">
+        <input class="search-box" type="text" placeholder="Tìm kiếm..." />
+        <div class="menu-btn" onclick="openMenu()">☰</div>
+      </div>
+    </header>
+     <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <!-- SIDE MENU -->
+    <div class="side-menu" id="menu">
+      <a href="index.html">Trang chủ</a>
+      <a href="index2.html">Giới thiệu</a>
+
+      <div class="menu-title" onclick="toggleSubMenu()">Khóa học ▼</div>
+
+      <div class="submenu" id="submenu">
+        <a href="index3.html">🥋 Taekwondo</a>
+        <a href="index3.html">🥊 Boxing</a>
+        <a href="index3.html">🥊 Kick Boxing</a>
+        <a href="index3.html">🏋️ Đẩy gậy</a>
+      </div>
+      <a href="index4.html">Shop</a>
+    </div>
+     <script>
+      function openMenu() {
+        document.getElementById("menu").classList.add("active");
+        document.getElementById("overlay").classList.add("active");
+      }
+
+      function closeMenu() {
+        document.getElementById("menu").classList.remove("active");
+        document.getElementById("overlay").classList.remove("active");
+        document.getElementById("submenu").classList.remove("open");
+      }
+
+      function toggleSubMenu() {
+        document.getElementById("submenu").classList.toggle("open");
+      }
+    </script>
+
+<h1>GIỚI THIỆU</h1>
+<h2 style="margin-top:50px;">Ban chủ nhiệm CLB Taekwondo Hòa Bình</h2>
+<div class="hangngang">
+  <div class="khungdoc">
+<article>
+<h3>Chủ nhiệm câu lạc bộ</h3>
+</article>
+<div class="khung">
+ <div class="frame">
+        <div class="text">LÊ NGÂN TRUNG HẬU</div>
+        <div class="image">
+            <img src="img/anh18.png">
+        </div>
+    </div>
+    </div>
+    <article>
+<h5>
+ ( Huấn luyện viên-trọng tài quốc gia )</h5>
+ <h5>
+Đạt ngũ đẳng huyền đai ( đai đen 5 đẳng )</h5>
+ </div>
+</article>
+<div class="khungdoc">
+<article>
+ <h3> Phó chủ nhiệm CLB - HDV</h3>
+<div class="khung">
+ <div class="frame">
+        <div class="text">BÙI THẠCH SƠN</div>
+        <div class="image">
+            <img src="img/anh19.png">
+        </div>
+    </div>
+    </div>
+<h5>
+Đạt nhị đẳng huyền đai ( đai đen 2 đẳng ) </h5>
+</div>
+<div class="khungdoc">
+<article>
+ <h3> Phó chủ nhiệm CLB - HDV </h3>
+  <div class="khung">
+ <div class="frame">
+        <div class="text">BÙI DIỄM HUỲNH</div>
+        <div class="image">
+            <img src="img/anh20.png">
+        </div>
+    </div>
+    </div>
+<h5>
+Đạt nhị đẳng huyền đai ( đai đen 2 đẳng ) </h5>
+</div>
+</div>
+</article>
+<h2 style=" margin-top:50px;"> Uỷ viên BCN- Hướng dẫn viên</h2>
+<div class="hangngang1">
+ <div class="khungdoc">
+<article>
+  <h3> Uỷ viên BCN</h3>
+<div class="khung">
+ <div class="frame">
+        <div class="text">LÊ MINH KHANG</div>
+        <div class="image">
+            <img src="img/anh21.png">
+        </div>
+    </div>
+    </div>
+<h5>
+Đạt nhị đẳng huyền đai ( đai đen 2 đẳng ) </h5>
+</div>
+   <div class="khungdoc">
+    <article>
+  <h3>Hướng dẫn viên</h3>
+<div class="khung">
+ <div class="frame">
+        <div class="text">TRẦN NGUYỄN AN NHIÊN</div>
+        <div class="image">
+            <img src="img/anh22.png">
+        </div>
+    </div>
+    </div>
+<h5>
+Đạt nhị đẳng huyền đai ( đai đen 2 đẳng ) </h5>
+</article>
+</div>
+ <div class="khungdoc">
+  <article>
+  <h3> Hướng dẫn viên</h3>
+<div class="khung">
+ <div class="frame">
+        <div class="text">LÊ TUYẾT NGỌC</div>
+        <div class="image">
+            <img src="img/anh23.png">
+        </div>
+    </div>
+    </div>
+<h5>
+Đạt nhị đẳng huyền đai ( đai đen 2 đẳng ) </h5>
+</div>
+</article>
+</div>
+<h2 style="margin-top:50px;">Hỗ trợ viên</h2>
+<div class="hangngang2">
+ <div class="khungdoc">
+<article>
+  <h3> Hỗ trợ viên</h3>
+<div class="khung">
+ <div class="frame">
+        <div class="text">NGUYỄN NGỌC BĂNG NGHI</div>
+        <div class="image">
+            <img src="img/anh24.png">
+        </div>
+    </div>
+    </div>
+<h5>
+Đạt nhị đẳng huyền đai ( đai đen 1 đẳng ) </h5>
+</article>
+</div>
+ <div class="khungdoc">
+<article>
+ <h3> Hỗ trợ viên</h3>
+<div class="khung">
+ <div class="frame">
+        <div class="text">PHẠM MỘNG THI</div>
+        <div class="image">
+            <img src="img/anh25.png">
+        </div>
+    </div>
+    </div>
+</article>
+</div>
+ <div class="khungdoc">
+<article>
+ <h3> Hỗ trợ viên</h3>
+<div class="khung">
+ <div class="frame">
+        <div class="text">TRẦN PHƯƠNG NAM</div>
+        <div class="image">
+            <img src="img/anh26.png">
+        </div>
+    </div>
+    </div>
+</article>
+</div>
+</div>
+<h5>
+ Đội ngũ hướng dẫn và hỗ trợ viên có trình độ chuyên môn cao, được hướng dẫn chuyên nghiệp. 
+Hướng dấn võ sinh tận tình, tạo môi trường học tập hòa đồng giúp nhau cùng tiến bộ.
+ Thiết kế bài tập phù hợp với từng võ sinh và mục đích mà võ sinh muốn hướng tới.
+</h5>
+</body>
+<footer class="footer">
+  <div class="grid">
+    <div class="grid__row" >
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Số điện thoại tư vấn:</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="tel:0797026243" class="footer-item_link">
+              <i class="footer-item_icon fa-solid fa-phone"></i>
+              <p style="margin-left:45px; margin-top:0px;">0797026243 (Thầy Hậu)</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Khóa học</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Taekwondo</a>
+          </li>
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Boxing</a>
+          </li>
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Kick boxing</a>
+          </li>
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Đẩy gậy</a>
+          </li>
+        </ul>
+      </div> 
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Theo dõi</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+    <!-- Nút Facebook - thay link trong href -->
+    <a href="https://www.facebook.com/share/17hm49R4SU/" class="social-button facebook-button" target="_blank">
+        <i class="fab fa-facebook social-icon"></i>
+        Facebook
+    </a>
+    <!-- Nút TikTok - thay link trong href -->
+    <a href="https://www.tiktok.com/@hau.le51?_r=1&_t=ZS-92utLG8MvRM" class="social-button tiktok-button" target="_blank">
+        <i class="fab fa-tiktok social-icon"></i>
+        TikTok
+    </a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">
+          Địa điểm
+          <i class="footer-item_icon fa-regular fa-house"></i>
+        </h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="" class="footer-item_link">
+              Trung tâm Văn hoá-Thể thao & Truyền thanh Phường Ninh Kiều
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Địa chỉ</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="" class="footer-item_link">
+              <i class="footer-item_icon fa-solid fa-location-dot"></i>
+              105B Trần Hưng Đạo, Q. Ninh Kiều, TP. Cần Thơ
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="grid">
+      <div class="grid__row">
+        <p>2026 - Bản Quyền Thuộc về CLB Taekwondo Hòa Bình</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</html>

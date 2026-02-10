@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CLB Taekwondo Hòa Bình</title>
+    <style>
+       
+        /* ===== BODY ===== */
+        body {
+          margin: 0;
+          font-family: Time New Roman, sans-serif;
+          background-color: #3a3a3a;
+          color: white;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+          background: linear-gradient(to bottom, #111, #444);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 20px;
+        }
+
+        /* ===== LOGO ===== */
+        .logo {
+          display: flex;
+          align-items: center;
+        }
+
+        .logo img {
+          width: 55px;
+          height: 55px;
+          border-radius: 50%; /* LOGO TRÒN */
+          object-fit: cover;
+          margin-right: 10px;
+          background: white; /* phòng khi logo nền trong */
+        }
+
+        .logo span {
+          color: #ffd700;
+          font-weight: bold;
+          font-size: 18px;
+        }
+
+        /* ===== SEARCH + HAMBURGER ===== */
+        .header-right {
+          display: flex;
+          align-items: center;
+          gap: 10px; 
+        }
+
+        .search-box {
+          padding: 5px 15px;
+          border-radius: 25px;
+          border: none;
+          outline: none;
+          height: 35px; 
+          font-size: 14px;
+          width: 180px;
+        }
+
+        .menu-btn {
+          font-size: 28px;
+          cursor: pointer;
+          color: #ffd700;
+          user-select: none;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.6);
+          display: none;
+          z-index: 998;
+        }
+
+        .overlay.active {
+          display: block;
+        }
+
+        /* ===== SIDE MENU ===== */
+        .side-menu {
+          position: fixed;
+          top: 0;
+          right: -260px;
+          width: 260px;
+          height: 100%;
+          background-color: #222;
+          padding: 20px;
+          transition: right 0.3s ease;
+          z-index: 999;
+        }
+
+        .side-menu.active {
+          right: 0;
+        }
+
+        .side-menu a,
+        .menu-title {
+          display: block;
+          padding: 12px 0;
+          color: white;
+          text-decoration: none;
+          font-size: 17px;
+          border-bottom: 1px solid #444;
+          cursor: pointer;
+        }
+
+        .side-menu a:hover,
+        .menu-title:hover {
+          color: #ffd700;
+        }
+
+        /* ===== SUBMENU (KHÓA HỌC) ===== */
+        .submenu {
+          display: none;
+          padding-left: 15px;
+        }
+
+        .submenu.open {
+          display: block;
+        }
+
+        .submenu a {
+          font-size: 16px;
+        }
+
+        /* ===== MAIN ===== */
+        main {
+          padding: 60px 20px;
+          text-align: left;
+        }
+        h2 {
+         margin-top: 50px;
+         color: #ffffff;
+         font-family: "Times New Roman", serif;
+          font-size: 40px;
+         line-height: 20px;
+         }
+        h1 {
+         color: #ffd700;
+         font-family: Helvetica, sans-serif;
+         font-size: 50px;
+         text-align: center;
+         }
+           * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            color: #fff;
+            padding: 0px;
+        }
+        
+        .container {
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #111;
+            border-radius: 8px;
+            border-left: 5px solid #FFD700;
+        }
+        
+        h2 {
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        h3 {
+            color: #FFD700;
+            margin: 15px 0;
+        }
+        
+        .martial-arts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .art-item {
+            background: #222;
+            padding: 15px;
+            border-radius: 5px;
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #333;
+        }
+        
+        .participants {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .participant {
+            background: #222;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .time-slot {
+            background: #222;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #FFD700;
+        }
+        
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+        }
+         .grid__column-2-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20%;
+  float: left; /* Hoặc sử dụng flexbox */
+  box-sizing: border-box; /* Để padding không ảnh hưởng đến width */
+}
+
+/* Cách 1: Sử dụng float (truyền thống) */
+ .grid__row {
+  overflow: hidden; /* Clear float */
+}
+
+/* Hoặc Cách 2: Sử dụng flexbox (hiện đại) */
+ .grid__row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+ .grid__column-2-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20%;
+  box-sizing: border-box;
+}
+        /* Footer styles */
+footer {
+  padding:3px;
+  background-color: #000000;
+  border-top: 4px solid var(--primary-color);
+  padding-top: 15px;
+}
+
+ .footer__heading {
+  font-size: 14px; /* Tăng kích thước cho dễ đọc */
+  text-transform: uppercase;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+ .footer-list {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+
+ .footer-item {
+  margin-bottom: 6px;
+}
+
+ .footer-item_link {
+  text-decoration: none;
+  font-size: 13px; /* Tăng kích thước cho dễ đọc */
+  color: var(--text-color);
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.footer-item_link:hover {
+  color: var(--primary-color);
+}
+
+.footer-item_icon {
+  font-size: 12px; /* Tăng kích thước cho dễ đọc */
+  margin-right: 8px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Biến CSS */
+ :root {
+  --text-color: #d49b00;
+  --primary-color: #ff9900;
+}
+
+ .footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+  font-size: 12px;
+  clear: both; /* Nếu dùng float */
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+   .grid__column-2-4 {
+    width: 50%; /* Trên mobile hiển thị 2 cột */
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+   .grid__column-2-4 {
+    width: 100%; /* Trên mobile nhỏ hiển thị 1 cột */
+  }
+}
+.container1{
+  width: 80%; /* Hoặc một giá trị cố định */
+  margin-left: 425px;
+  margin-right: auto;
+  margin-top:10px;
+}
+ .slider {
+            width: 600px;
+            position: relative;
+        }
+        
+         .slides-container {
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+         .slides {
+            display: flex;
+            transition: 0.3s;
+        }
+        
+        .slide {
+            min-width: 100%;
+        }
+        
+         .slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .nav:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        
+         .prev {
+            left: -20px;
+        }
+        
+        .next {
+            right: -20px;
+        }
+        
+         .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+         .dot {
+            width: 10px;
+            height: 10px;
+            background: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+      
+         .dot.active {
+            background: #333;
+        }
+          .social-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+         .facebook-button {
+            background-color: #1877F2;
+            color: white;
+        }
+         .facebook-button:hover {
+            background-color: #166FE5;
+            transform: translateY(-2px);
+        }
+         .tiktok-button {
+            background-color: #000000;
+            color: white;
+        }
+         .tiktok-button:hover {
+            background-color: #222222;
+            transform: translateY(-2px);
+        }
+         .social-icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+       .tiktok-button .social-icon {
+            color: #FF0050;
+            text-shadow: 2px 0px 0px #00F2EA;
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="img/logo.jpg" alt="Logo CLB" />
+        <span>TAEKWONDO & BOXING HÒA BÌNH</span>
+      </div>
+
+      <div class="header-right">
+        <input class="search-box" type="text" placeholder="Tìm kiếm..." />
+        <div class="menu-btn" onclick="openMenu()">☰</div>
+      </div>
+    </header>
+     <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <!-- SIDE MENU -->
+    <div class="side-menu" id="menu">
+      <a href="index.html">Trang chủ</a>
+      <a href="index2.html">Giới thiệu</a>
+
+      <div class="menu-title" onclick="toggleSubMenu()">Khóa học ▼</div>
+
+      <div class="submenu" id="submenu">
+        <a href="index3.html">🥋 Taekwondo</a>
+        <a href="index3.html">🥊 Boxing</a>
+        <a href="index3.html">🥊 Kick Boxing</a>
+        <a href="index3.html">🏋️ Đẩy gậy</a>
+      </div>
+
+      <a href="index4.html">Shop</a>
+    </div>
+     <script>
+      function openMenu() {
+        document.getElementById("menu").classList.add("active");
+        document.getElementById("overlay").classList.add("active");
+      }
+
+      function closeMenu() {
+        document.getElementById("menu").classList.remove("active");
+        document.getElementById("overlay").classList.remove("active");
+        document.getElementById("submenu").classList.remove("open");
+      }
+
+      function toggleSubMenu() {
+        document.getElementById("submenu").classList.toggle("open");
+      }
+    </script>
+    <h1 style="margin-top:30px;"> KHÓA HỌC</h1>
+<div style="
+  display:inline-block;
+  padding:14px 40px;
+  background:linear-gradient(135deg,#ffd400,#ffb700);
+  transform:skew(-20deg);
+  box-shadow:0 6px 0 #d49b00, 0 10px 20px rgba(0,0,0,0.3);
+  position:relative;
+ Margin: 20px;
+">
+<span style="
+    display:block;
+    transform:skew(20deg);
+    font-size:20px;
+    font-weight:bold;
+    color:#222;
+    letter-spacing:1px;">
+  TAEKWONDO: căn bản-nâng cao, ôn luyện thi cấp đai, đẳng theo chương trình chuẩn, 
+nâng cao thể lực, rèn luyện kĩ năng trong đấu đối kháng hay những màn biểu diễn quyền mãn nhãn.
+  </span>
+</div>
+<div style="
+  display:inline-block;
+  padding:14px 40px;
+  background:linear-gradient(135deg,#ffd400,#ffb700);
+  transform:skew(-20deg);
+  box-shadow:0 6px 0 #d49b00, 0 10px 20px rgba(0,0,0,0.3);
+  position:relative;
+ Margin: 20px;
+">
+<span style="
+    display:block;
+    transform:skew(20deg);
+    font-size:20px;
+    font-weight:bold;
+    color:#222;
+    letter-spacing:1px;">
+ KICK BOXING: CLB Kick Boxing Hoà Bình chiêu sinh học viên muốn giảm cân-tăng sức mạnh-phản xạ 
+nhanh-tự vệ thực tế. Giáo án khoa học, tập luyện an toàn, có hướng dẫn viên chuyên nghiệp chỉ dạy,
+ phù hợp cả nam và nữ.  
+  </span>
+</div>
+<div style="
+  display:inline-block;
+  padding:14px 40px;
+  background:linear-gradient(135deg,#ffd400,#ffb700);
+  transform:skew(-20deg);
+  box-shadow:0 6px 0 #d49b00, 0 10px 20px rgba(0,0,0,0.3);
+  position:relative;
+ Margin: 20px;
+">
+<span style="
+    display:block;
+    transform:skew(20deg);
+    font-size:20px;
+    font-weight:bold;
+    color:#222;
+    letter-spacing:1px;">
+  BOXING: CLB Boxing Hoà Bình chiêu sinh học viên yêu thích đấm bốc, thể lực toàn diện, sức bền và tinh thần chiến đấu.
+ Phù hợp rèn luyện sức khoẻ, phản xạ, xả stress sau học tập-làm việc. 
+  </span>
+</div>
+<div style="
+  display:inline-block;
+  padding:14px 40px;
+  background:linear-gradient(135deg,#ffd400,#ffb700);
+  transform:skew(-20deg);
+  box-shadow:0 6px 0 #d49b00, 0 10px 20px rgba(0,0,0,0.3);
+  position:relative;
+ Margin: 20px;
+">
+<span style="
+    display:block;
+    transform:skew(20deg);
+    font-size:20px;
+    font-weight:bold;
+    color:#222;
+    letter-spacing:1px;">
+
+   ĐẨY GẬY: CLB Đẩy gậy Hoà Bình chiêu sinh học viên rèn luyện sức mạnh tay-chân-thân người,
+    thăng bằng và chiến thuật thi đấu.
+    Môn thể thao dân tộc, phù hợp cả phong trào và thi đấu thành tích.
+  </span>
+</div>
+<h1 style="margin-top:30px;">BỘ MÔN - ĐỐI TƯỢNG - LỊCH HỌC</h1>
+  <div class="container">
+        <!-- Bộ môn đào tạo -->
+        <div class="section" style="margin-top:30px;">
+            <h2>🥋 BỘ MÔN ĐÀO TẠO</h2>
+            <div class="martial-arts">
+                <div class="art-item">
+                    <h3>Taekwondo</h3>
+                    <p>Nghệ thuật tự vệ Hàn Quốc</p>
+                </div>
+                <div class="art-item">
+                    <h3>Boxing</h3>
+                    <p>Kỹ thuật đấm và di chuyển</p>
+                </div>
+                <div class="art-item">
+                    <h3>Kick Boxing</h3>
+                    <p>Kết hợp đấm và đá</p>
+                </div>
+                <div class="art-item">
+                    <h3>Đẩy Gậy</h3>
+                    <p>Bộ môn truyền thống</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Đối tượng tham gia -->
+        <div class="section">
+            <h2>🎯 ĐỐI TƯỢNG THAM GIA</h2>
+            <div class="participants">
+                <div class="participant">
+                    <h3>🎓 Học sinh - Sinh viên</h3>
+                    <p>Phù hợp cho mọi lứa tuổi</p>
+                </div>
+                <div class="participant">
+                    <h3>💼 Người đi làm</h3>
+                    <p>Lịch học linh hoạt</p>
+                </div>
+                <div class="participant">
+                    <h3>👉 Nam & Nữ</h3>
+                    <p>Tất cả đối tượng</p>
+                </div>
+            </div>
+        </div>
+        <!-- Lịch học -->
+        <div class="section" style="display:flex;">
+          <div>
+            <h2>⏰ LỊCH HỌC LINH HOẠT</h2>
+            <p>CLB Taekwondo & Boxing Hòa Bình mang đến lịch học linh hoạt, phù hợp cho học sinh, sinh viên và người đi làm.</p>
+            <p class="highlight">Thời gian tập đa dạng nhiều khung giờ trong ngày, số buổi không giới hạn mỗi tuần, giúp võ sinh chủ động sắp xếp lịch cá nhân và duy trì luyện tập đều đặn, hiệu quả. 💪🥋</p> 
+            <p style="margin-top: 20px; font-style: italic;">Võ sinh có thể luyện tập thường xuyên theo lịch cá nhân</p>
+            </div>
+            <div>
+            <img src="img/anh27.png" style="height:350px; width:auto; margin-left:300px;">
+            </div>
+        </div>
+    </div>
+</body>
+<div class="ff1">
+<footer class="footer">
+  <div class="grid">
+    <div class="grid__row">
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Số điện thoại tư vấn:</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="tel:0797026243" class="footer-item_link">
+              <i class="footer-item_icon fa-solid fa-phone"></i>
+              <p style="margin-left:45px; margin-top:0px;">0797026243 (Thầy Hậu)</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Khóa học</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Taekwondo</a>
+          </li>
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Boxing</a>
+          </li>
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Kick boxing</a>
+          </li>
+          <li class="footer-item">
+            <a href="" class="footer-item_link">Đẩy gậy</a>
+          </li>
+        </ul>
+      </div> 
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Theo dõi</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+    <!-- Nút Facebook - thay link trong href -->
+    <a href="https://www.facebook.com/share/17hm49R4SU/" class="social-button facebook-button" target="_blank">
+        <i class="fab fa-facebook social-icon"></i>
+        Facebook
+    </a>
+    <!-- Nút TikTok - thay link trong href -->
+    <a href="https://www.tiktok.com/@hau.le51?_r=1&_t=ZS-92utLG8MvRM" class="social-button tiktok-button" target="_blank">
+        <i class="fab fa-tiktok social-icon"></i>
+        TikTok
+    </a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">
+          Địa điểm
+          <i class="footer-item_icon fa-regular fa-house"></i>
+        </h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="" class="footer-item_link">
+              Trung tâm Văn hoá-Thể thao & Truyền thanh Phường Ninh Kiều
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__column-2-4">
+        <h3 class="footer__heading">Địa chỉ</h3>
+        <ul class="footer-list">
+          <li class="footer-item">
+            <a href="" class="footer-item_link">
+              <i class="footer-item_icon fa-solid fa-location-dot"></i>
+              105B Trần Hưng Đạo, Q. Ninh Kiều, TP. Cần Thơ
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="grid">
+      <div class="grid__row">
+        <p>2026 - Bản Quyền Thuộc về CLB Taekwondo Hòa Bình</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+</html>
